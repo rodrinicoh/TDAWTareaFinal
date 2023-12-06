@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+  mongodb:
+    container_name: mongo
+    build:
+        context: ./mongo
+        dockerfile: Dockerfile
+    ports:
+      - '27017:27017'
+    
+
+  all-movies:
+    build:
+        context: ./all-movies
+        dockerfile: Dockerfile
+    container_name: all-movies
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mongodb
+
+  random-movie:
+    build:
+        context: ./random-movie
+        dockerfile: Dockerfile
+    container_name: random-movie
+    ports:
+      - "3002:3002"
+    depends_on:
+      - mongodb
+
+  info:
+    build:
+        context: ./info
+        dockerfile: Dockerfile
+    container_name: info
+    ports:
+      - "3004:3004"
+
+  favorite-movies:
+    build:
+        context: ./favorite-movies
+        dockerfile: Dockerfile
+    container_name: favorite-movies
+    ports:
+      - "3003:3003"
+    depends_on:
+      - mongodb
+
+
+  
