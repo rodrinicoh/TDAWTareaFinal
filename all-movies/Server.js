@@ -54,7 +54,7 @@ app.get('/all-movies', async (req, res) => {
         release_date: movieDetails.release_date,
         vote_average: movieDetails.vote_average,
         overview: movieDetails.overview,
-        favorite: movie.favorite
+        poster_path: movieDetails.poster_path
       });
     }
     res.json(moviesWithTMDBDetails);
